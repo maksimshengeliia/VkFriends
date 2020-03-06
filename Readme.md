@@ -5,8 +5,8 @@
 
 <a href="https://maksimshengeliia.azurewebsites.net/vkfriends/test.apk">Ссылка на apk</a>
 ## Скриншоты
-<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/1.png" width="160" height="240"/>
-<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/2.png" width="160" height="240"/>
-<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/3.png" width="160" height="240"/>
-<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/4.png" width="160" height="240"/>
-<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/5.png" width="160" height="240"/>
+<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/1.png" width="270" height="480"/>
+<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/2.png" width="270" height="480"/>
+<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/3.png" width="270" height="480"/>
+<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/4.png" width="270" height="480"/>
+<img src="https://maksimshengeliia.azurewebsites.net/vkfriends/examples/5.png" width="270" height="480"/>
