@@ -3,8 +3,8 @@ package com.shengeliia.vkfriends.ui.friends
 import com.shengeliia.vkfriends.App
 import com.shengeliia.vkfriends.R
 import com.shengeliia.vkfriends.data.FriendsRepository
-import com.shengeliia.vkfriends.data.local.Friend
 import com.shengeliia.vkfriends.data.local.PreferenceManager
+import com.shengeliia.vkfriends.data.local.models.Friend
 import com.shengeliia.vkfriends.data.remote.ApiErrorException
 import com.shengeliia.vkfriends.data.remote.RetrofitClient.RESPONSE_CODE_SESSION_FAILED
 import kotlinx.coroutines.*
@@ -17,7 +17,7 @@ class FriendsPresenter : FriendsContract.PresenterMVP {
     override fun onRefreshFriends() {
         scope.launch {
             try {
-                val token = PreferenceManager.getUserToken()
+                val token = PreferenceManager.getUserData().userToken
                 val friends = repository.getRemoteFriends(token)
                 showFriends(friends)
             } catch (e: ApiErrorException) {
@@ -37,7 +37,7 @@ class FriendsPresenter : FriendsContract.PresenterMVP {
     override fun onLogout() {
         scope.launch {
             repository.deleteFriends()
-            PreferenceManager.deleteUserToken()
+            PreferenceManager.cleanUserData()
             withContext(Dispatchers.Main) {
                 view?.logout()
             }
@@ -46,11 +46,8 @@ class FriendsPresenter : FriendsContract.PresenterMVP {
 
     override fun register(view: FriendsContract.ViewMVP) {
         this.view = view
-        if (checkUserIsActivated()) {
-            getFriendsFromCache()
-        } else {
-           onLogout()
-        }
+        view.showToolbarInfo(PreferenceManager.getUserData())
+        getFriendsFromCache()
     }
 
     private fun getFriendsFromCache() {
@@ -59,7 +56,7 @@ class FriendsPresenter : FriendsContract.PresenterMVP {
             try {
                 var friends = repository.getLocalFriends()
                 if (friends.isEmpty()) {
-                    val token = PreferenceManager.getUserToken()
+                    val token = PreferenceManager.getUserData().userToken
                     friends = repository.getRemoteFriends(token)
                 }
                 showFriends(friends)

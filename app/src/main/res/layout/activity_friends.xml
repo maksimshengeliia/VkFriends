@@ -31,7 +31,9 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+            <include layout="@layout/user_layout"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/friendsMessage"

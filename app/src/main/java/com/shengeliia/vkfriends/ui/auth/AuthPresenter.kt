@@ -21,8 +21,8 @@ class AuthPresenter : AuthContract.PresenterMVP {
         view?.showLoading()
         scope.launch {
             try {
-                val userToken = repository.login(token, clientId)
-                PreferenceManager.setUserToken(userToken)
+                val loginResponse = repository.login(token, clientId)
+                PreferenceManager.saveUserData(loginResponse)
                 showSuccessLogin()
             } catch (e: ApiErrorException) {
                 showErrorMessage(e.apiError.message)

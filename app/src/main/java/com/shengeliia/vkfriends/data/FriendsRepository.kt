@@ -1,7 +1,8 @@
 package com.shengeliia.vkfriends.data
 
 import com.shengeliia.vkfriends.App
-import com.shengeliia.vkfriends.data.local.Friend
+import com.shengeliia.vkfriends.data.local.models.Friend
+import com.shengeliia.vkfriends.data.local.models.UserInfo
 import com.shengeliia.vkfriends.data.remote.ApiErrorException
 import com.shengeliia.vkfriends.data.remote.RetrofitClient
 import com.shengeliia.vkfriends.data.remote.RetrofitClient.PARAM_COUNT
@@ -14,7 +15,7 @@ import com.shengeliia.vkfriends.data.remote.RetrofitClient.VALUE_SECRET_KEY
 import com.shengeliia.vkfriends.data.remote.parseError
 
 class FriendsRepository {
-    fun login(vkToken: String, userId: String): String {
+    fun login(vkToken: String, userId: String): UserInfo {
         val api = RetrofitClient.getApi()
         val call = api.login (
             hashMapOf (
@@ -25,7 +26,7 @@ class FriendsRepository {
         )
         val response = call.execute()
         if (response.isSuccessful) {
-            return response.body().toString()
+            return response.body()!!
         } else {
             throw ApiErrorException(parseError(response))
         }

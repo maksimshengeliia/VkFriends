@@ -1,4 +1,4 @@
-package com.shengeliia.vkfriends.data.local
+package com.shengeliia.vkfriends.data.local.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

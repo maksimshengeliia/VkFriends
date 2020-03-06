@@ -1,10 +1,12 @@
 package com.shengeliia.vkfriends.ui.friends
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -12,8 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.shengeliia.vkfriends.R
-import com.shengeliia.vkfriends.data.local.Friend
+import com.shengeliia.vkfriends.data.local.PreferenceManager
+import com.shengeliia.vkfriends.data.local.models.Friend
+import com.shengeliia.vkfriends.data.local.models.UserInfo
 import com.shengeliia.vkfriends.ui.intro.IntroActivity
+import com.squareup.picasso.Picasso
 
 class FriendsActivity : AppCompatActivity(), FriendsContract.ViewMVP, SwipeRefreshLayout.OnRefreshListener {
     private val presenter: FriendsContract.PresenterMVP = FriendsPresenter()
@@ -22,10 +27,18 @@ class FriendsActivity : AppCompatActivity(), FriendsContract.ViewMVP, SwipeRefre
     private lateinit var friendsList: RecyclerView
     private lateinit var message: TextView
     private lateinit var refresh: SwipeRefreshLayout
+    private lateinit var userImage: ImageView
+    private lateinit var userName: TextView
     private val adapter = FriendsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Если пользователь еще не авторизирован - выйти
+        if (!PreferenceManager.isUserTokenSet()) {
+            logout()
+        }
+
         setContentView(R.layout.activity_friends)
 
         findViews()
@@ -41,6 +54,8 @@ class FriendsActivity : AppCompatActivity(), FriendsContract.ViewMVP, SwipeRefre
         friendsList = findViewById(R.id.friendsList)
         message = findViewById(R.id.friendsMessage)
         refresh = findViewById(R.id.friendsRefresh)
+        userImage = findViewById(R.id.friendsUserPhoto)
+        userName = findViewById(R.id.friendsUserName)
     }
 
     override fun onStart() {
@@ -88,6 +103,14 @@ class FriendsActivity : AppCompatActivity(), FriendsContract.ViewMVP, SwipeRefre
 
     override fun showLoading() {
         refresh.isRefreshing = true
+    }
+
+    override fun showToolbarInfo(info: UserInfo) {
+        userName.text = info.userName
+        Picasso.get()
+            .load(info.userPhotoUrl)
+            .placeholder(ColorDrawable(0xFFE57373.toInt()))
+            .into(userImage)
     }
 
     override fun dismissLoading() {

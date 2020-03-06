@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shengeliia.vkfriends.R
-import com.shengeliia.vkfriends.data.local.Friend
+import com.shengeliia.vkfriends.data.local.models.Friend
 import com.squareup.picasso.Picasso
 import kotlin.random.Random
 

@@ -4,7 +4,6 @@ import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
@@ -21,7 +20,7 @@ object RetrofitClient {
     const val PARAM_VK_TOKEN = "vkToken"
     const val PARAM_USER_TOKEN = "userToken"
     const val PARAM_COUNT = "count"
-    const val VALUE_COUNT = "10"
+    const val VALUE_COUNT = "5"
 
     fun getApi(): FriendsApi {
         val okHttpClient = OkHttpClient.Builder()
@@ -32,7 +31,6 @@ object RetrofitClient {
         val retrofit = Retrofit.Builder()
             .baseUrl(REMOTE_SERVER_URL)
             .client(okHttpClient)
-            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
         return retrofit.create(FriendsApi::class.java)
