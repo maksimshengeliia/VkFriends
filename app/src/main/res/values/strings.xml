@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">VkFriends</string>
+    <string name="login_button">Войти</string>
+
+    <string name="page_trust">Надежный</string>
+    <string name="page_fast">Быстрый</string>
+    <string name="page_fun">Весёлый</string>
+
+    <string name="launch_activity">Главная</string>
+    <string name="auth_activity">Вход</string>
+    <string name="intro_activity">Интро</string>
+    <string name="action_logout">Выйти</string>
+    <string name="default_error_message">Упс&#8230; что-то пошло не так. Попробуйте повторить попытку позже</string>
+    <string name="internet_error_message">Проверьте интернет</string>
 </resources>

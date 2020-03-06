@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="large_title_text">28sp</dimen>
+    <dimen name="medium_title_text">22sp</dimen>
+    <dimen name="small_title_text">18sp</dimen>
+    <dimen name="button_corner_radius">30dp</dimen>
+</resources>
