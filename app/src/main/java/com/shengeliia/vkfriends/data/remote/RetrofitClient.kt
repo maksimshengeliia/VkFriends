@@ -1,6 +1,7 @@
 package com.shengeliia.vkfriends.data.remote
 
 import com.google.gson.GsonBuilder
+import com.shengeliia.vkfriends.data.remote.BuildVars.SERVER_SECRET_WORD
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,7 +16,7 @@ object RetrofitClient {
     * */
     const val RESPONSE_CODE_SESSION_FAILED = 3
     const val PARAM_SECRET_KEY = "secretKey"
-    const val VALUE_SECRET_KEY = "" // Секретный ключ приложения
+    const val VALUE_SECRET_KEY = SERVER_SECRET_WORD // Секретный ключ приложения
     const val PARAM_USER_ID = "userId"
     const val PARAM_VK_TOKEN = "vkToken"
     const val PARAM_USER_TOKEN = "userToken"
